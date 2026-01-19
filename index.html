@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تحب رهف؟</title>
+
+<style>
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#0b1020,#1b2a5a);
+    font-family: system-ui, Arial;
+    color:#fff;
+  }
+
+  .box{
+    background:rgba(255,255,255,.08);
+    padding:30px;
+    border-radius:20px;
+    width:min(420px,90%);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  h1{margin:0 0 10px;font-size:34px}
+  p{opacity:.8}
+
+  .buttons{
+    margin-top:25px;
+    position:relative;
+    height:160px;
+  }
+
+  button{
+    padding:14px 22px;
+    font-size:18px;
+    border-radius:14px;
+    border:none;
+    cursor:pointer;
+    position:absolute;
+    transition:.2s ease;
+  }
+
+  .yes{
+    background:#2ee59d;
+    color:#000;
+    right:20%;
+    bottom:20px;
+  }
+
+  .no{
+    background:#ff5c7a;
+    color:#fff;
+    left:20%;
+    top:20px;
+  }
+
+  .result{
+    margin-top:25px;
+    font-size:26px;
+    font-weight:bold;
+    min-height:40px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>تحب رهف؟</h1>
+  <p>جاوب بصراحة 😌</p>
+
+  <div class="buttons">
+    <button class="yes">ايه</button>
+    <button class="no">لا</button>
+  </div>
+
+  <div class="result" id="result">—</div>
+</div>
+
+<script>
+const noBtn = document.querySelector('.no');
+const yesBtn = document.querySelector('.yes');
+const result = document.getElementById('result');
+const box = document.querySelector('.buttons');
+
+// زر "لا" يهرب
+noBtn.addEventListener('mouseenter', moveButton);
+noBtn.addEventListener('touchstart', moveButton);
+
+function moveButton(){
+  const maxX = box.clientWidth - noBtn.clientWidth;
+  const maxY = box.clientHeight - noBtn.clientHeight;
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  noBtn.style.left = x + 'px';
+  noBtn.style.top  = y + 'px';
+}
+
+// أي ضغط = ايه
+yesBtn.onclick = noBtn.onclick = () => {
+  result.textContent = "ايه ❤️ رهف";
+};
+</script>
+
+</body>
+</html>
